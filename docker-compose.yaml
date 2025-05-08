@@ -11,7 +11,7 @@ services:
       - '5432:5432'
     volumes: 
       - pg_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - mlflow-net
     healthcheck:
@@ -59,7 +59,7 @@ services:
 
   mlflow:
     build: 
-      context: .
+      context: ./mlflow
       dockerfile: Dockerfile
     container_name: mlflow_server
     depends_on:
